@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: Arial;
+            font-size: 30px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 900; 
+            color: black;
+        }
+
+        #myVideo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: auto;
+            height: auto;
+            min-width: 100%; 
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            z-index: -1; 
+        }
+
+        .content {
+            position: relative;
+            color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 100vh;
+            margin-top: 50px;
+            padding-bottom: 150px; /* Increased padding-bottom for more space */
+        }
+
+        #myBtn {
+            width: 200px;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            background-color: rgb(12, 12, 97);
+            color: #fff;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        #myBtn:hover {
+            transform: scale(1.1); /* Zoom in on hover */
+        }
+
+        h1 {
+            margin: 20px 0;
+            text-shadow: 2px 2px 5px;
+        }
+
+        .logo-container {
+            display: grid;
+            grid-template-columns: repeat(8, 70px); /* Six logos per row */
+            grid-auto-rows: 70px; /* Fixed height for uniformity */
+            gap: 50px; /* Space between logos */
+            justify-content: center;
+            margin-top: 250px;
+        }
+
+        .logo-container a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px; /* Fixed size for all logos */
+            height: 70px; /* Fixed height to ensure uniformity */
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensure logos fit within the container */
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.2); /* Zoom in on hover */
+        }
+
+        /* Media Query for Smaller Screens - Switch to Flexbox */
+        @media (max-width: 768px) {
+            .logo-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 30px; /* Adjust spacing for flex layout */
+            }
+
+            .logo-container a {
+                width: 60px; /* Adjust size for smaller screens */
+                height: 60px;
+            }
+
+            .logo-container img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="{% static 'vfx1.mp4' %}" type="video/mp4">
+    </video>
+    
+    <div class="content">
+        <h1>Welcome to the homepage</h1>
+        {% if user.is_authenticated %}
+        <h1>{{ user.username }}</h1>
+        <button id="myBtn"><a href="logout" style="color: inherit; text-decoration: none;">Logout</a></button>
+        {% else %}
+        <button id="myBtn"><a href="login" style="color: inherit; text-decoration: none;">Login</a></button>
+        {% endif %}
+        
+        <!-- Logo container inside the content div -->
+        <div class="logo-container">
+            <a href="https://www.facebook.com" target="_blank">
+                <img src="{% static 'images/facebook-logo.png' %}" alt="Facebook Logo">
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="{% static 'images/instagram-logo.png' %}" alt="Instagram Logo">
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <img src="{% static 'images/twitter-logo.png' %}" alt="Twitter Logo">
+            </a>
+            <a href="https://www.youtube.com" target="_blank">
+                <img src="{% static 'images/youtube-logo.png' %}" alt="YouTube Logo">
+            </a>
+            <a href="https://www.netflix.com" target="_blank">
+                <img src="{% static 'images/netflix-logo.png' %}" alt="Netflix Logo">
+            </a>
+            <a href="https://www.spotify.com" target="_blank">
+                <img src="{% static 'images/spotify-logo.png' %}" alt="Spotify Logo">
+            </a>
+            <a href="https://www.snapchat.com" target="_blank">
+                <img src="{% static 'images/snapchat-logo.png' %}" alt="Snapchat Logo">
+            </a>
+            <a href="https://www.linkedin.com" target="_blank">
+                <img src="{% static 'images/linkedin-logo.png' %}" alt="LinkedIn Logo">
+            </a>
+        </div>
+    </div>
+</body>
+</html>
